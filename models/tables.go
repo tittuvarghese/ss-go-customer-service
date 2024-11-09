@@ -10,7 +10,7 @@ type User struct {
 	ID        uuid.UUID `gorm:"primaryKey;type:char(36)"`
 	Firstname string
 	Lastname  string
-	Username  string
+	Username  string `gorm:"unique"`
 	Password  string
 	CreatedAt time.Time
 }

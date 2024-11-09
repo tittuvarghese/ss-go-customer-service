@@ -67,8 +67,21 @@ func (s *Server) Register(ctx context.Context, req *proto.RegisterRequest) (*pro
 
 // Login
 func (s *Server) Login(ctx context.Context, req *proto.LoginRequest) (*proto.LoginResponse, error) {
+
+	var request models.LoginRequest
+	request.Username = req.Username
+	request.Password = req.Password
+
+	token, err := service.AuthenticateUser(request, s.RdbInstance)
+
+	if err != nil {
+		return &proto.LoginResponse{
+			Token: "Unable to authenticate the user",
+		}, err
+	}
+
 	return &proto.LoginResponse{
-		Token: "token",
+		Token: token,
 	}, nil
 }
 
