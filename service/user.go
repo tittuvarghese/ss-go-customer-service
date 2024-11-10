@@ -59,3 +59,35 @@ func AuthenticateUser(req models.LoginRequest, storage *database.RelationalDatab
 
 	return "", fmt.Errorf("invalid password")
 }
+
+func GetProfile(userid string, storage *database.RelationalDatabase) (models.UserProfile, error) {
+	var user models.User
+	condition := map[string]interface{}{"id": userid}
+
+	// Pass a slice of User to QueryByCondition
+	res, err := storage.Instance.QueryByCondition(&user, condition)
+	if err != nil {
+		return models.UserProfile{}, err
+	}
+
+	// Check if the result contains any user
+	if len(res) == 0 {
+		return models.UserProfile{}, fmt.Errorf("user not found")
+	}
+
+	// Cast the result to the correct type (since QueryByCondition returns []interface{})
+	foundUser, ok := res[0].(*models.User)
+	if !ok {
+		return models.UserProfile{}, fmt.Errorf("type assertion failed")
+	}
+
+	result := models.UserProfile{
+		Username:  foundUser.Username,
+		ID:        foundUser.ID,
+		Firstname: foundUser.Firstname,
+		Lastname:  foundUser.Lastname,
+	}
+
+	return result, nil
+
+}

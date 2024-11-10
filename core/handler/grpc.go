@@ -88,10 +88,16 @@ func (s *Server) Login(ctx context.Context, req *proto.LoginRequest) (*proto.Log
 // GetProfile
 func (s *Server) GetProfile(ctx context.Context, req *proto.GetProfileRequest) (*proto.GetProfileResponse, error) {
 
+	user, err := service.GetProfile(req.Userid, s.RdbInstance)
+
+	if err != nil {
+		return &proto.GetProfileResponse{}, err
+	}
+
 	return &proto.GetProfileResponse{
-		Userid:    "1",
-		Username:  "john_doe",
-		Firstname: "Profile fetched successfully",
-		Lastname:  "Profile fetched successfully",
+		Userid:    user.ID.String(),
+		Username:  user.Username,
+		Firstname: user.Firstname,
+		Lastname:  user.Lastname,
 	}, nil
 }
