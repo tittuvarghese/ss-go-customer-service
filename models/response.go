@@ -7,6 +7,7 @@ type AuthTokenPayload struct {
 	Username  string    `json:"username"`
 	Firstname string    `json:"firstname"`
 	Lastname  string    `json:"lastname"`
+	Type      string    `json:"type"`
 }
 
 type UserProfile struct {
@@ -14,4 +15,5 @@ type UserProfile struct {
 	Username  string    `json:"username"`
 	Firstname string    `json:"firstname"`
 	Lastname  string    `json:"lastname"`
+	Type      string    `json:"type"`
 }

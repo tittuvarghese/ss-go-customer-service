@@ -25,7 +25,7 @@ func NewGrpcServer() *Server {
 }
 
 func (s *Server) Run(port string) {
-	lis, err := net.Listen("tcp", ":8082")
+	lis, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		log.Error("Failed to listen", err)
 	}
@@ -52,6 +52,7 @@ func (s *Server) Register(ctx context.Context, req *proto.RegisterRequest) (*pro
 	user.Password = req.Password
 	user.Firstname = req.Firstname
 	user.Lastname = req.Lastname
+	user.Type = req.Type
 
 	err := service.CreateUser(user, s.RdbInstance)
 	if err != nil {
@@ -99,5 +100,6 @@ func (s *Server) GetProfile(ctx context.Context, req *proto.GetProfileRequest) (
 		Username:  user.Username,
 		Firstname: user.Firstname,
 		Lastname:  user.Lastname,
+		Type:      user.Type,
 	}, nil
 }

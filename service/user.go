@@ -48,6 +48,7 @@ func AuthenticateUser(req models.LoginRequest, storage *database.RelationalDatab
 			ID:        foundUser.ID,
 			Firstname: foundUser.Firstname,
 			Lastname:  foundUser.Lastname,
+			Type:      foundUser.Type,
 		}
 
 		token, err := jwt.Generate(payload, constants.AppName)
@@ -86,7 +87,10 @@ func GetProfile(userid string, storage *database.RelationalDatabase) (models.Use
 		ID:        foundUser.ID,
 		Firstname: foundUser.Firstname,
 		Lastname:  foundUser.Lastname,
+		Type:      foundUser.Type,
 	}
+
+	fmt.Println(result)
 
 	return result, nil
 

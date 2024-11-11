@@ -12,6 +12,7 @@ type User struct {
 	Lastname  string
 	Username  string `gorm:"unique"`
 	Password  string
+	Type      string `gorm:"default:user"`
 	CreatedAt time.Time
 }
 

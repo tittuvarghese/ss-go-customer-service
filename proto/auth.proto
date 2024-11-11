@@ -21,6 +21,7 @@ message RegisterRequest {
   string lastname = 2;
   string username = 3;
   string password = 4;
+  string type = 5;
 }
 
 message RegisterResponse {
@@ -46,5 +47,6 @@ message GetProfileResponse {
   string username = 2;
   string firstname = 3;
   string lastname = 4;
+  string type = 5;
 }
 
