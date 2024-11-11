@@ -89,9 +89,6 @@ func GetProfile(userid string, storage *database.RelationalDatabase) (models.Use
 		Lastname:  foundUser.Lastname,
 		Type:      foundUser.Type,
 	}
-
-	fmt.Println(result)
-
 	return result, nil
 
 }
