@@ -51,7 +51,7 @@ func AuthenticateUser(req models.LoginRequest, storage *database.RelationalDatab
 			Type:      foundUser.Type,
 		}
 
-		token, err := jwt.Generate(payload, constants.AppName)
+		token, err := jwt.Generate(payload, constants.AppName, constants.JwtExpiryHours)
 		if err != nil {
 			return "", err
 		}
