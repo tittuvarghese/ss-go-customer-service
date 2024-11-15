@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  customer-service:
+    container_name: customer-service
+    image: tittuvarghese/scalableservice:latest
+    command:
+      - "./customer-service"
+    environment:
+      - DATABASE_URL=ecommerceuser:password@tcp(mariadb:3306)/ecommerce?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - "8082:8082"
