@@ -2,11 +2,12 @@ package handler
 
 import (
 	"context"
-	"github.com/tittuvarghese/core/logger"
-	"github.com/tittuvarghese/customer-service/core/database"
-	"github.com/tittuvarghese/customer-service/models"
-	"github.com/tittuvarghese/customer-service/proto"
-	"github.com/tittuvarghese/customer-service/service"
+	"github.com/tittuvarghese/ss-go-core/logger"
+	"github.com/tittuvarghese/ss-go-customer-service/core/database"
+	"github.com/tittuvarghese/ss-go-customer-service/models"
+	"github.com/tittuvarghese/ss-go-customer-service/proto"
+	"github.com/tittuvarghese/ss-go-customer-service/service"
+	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
@@ -21,7 +22,7 @@ type Server struct {
 var log = logger.NewLogger("customer-service")
 
 func NewGrpcServer() *Server {
-	return &Server{GrpcServer: grpc.NewServer()}
+	return &Server{GrpcServer: grpc.NewServer(grpc.StatsHandler(otelgrpc.NewServerHandler()))}
 }
 
 func (s *Server) Run(port string) {
