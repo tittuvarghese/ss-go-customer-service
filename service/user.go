@@ -2,11 +2,11 @@ package service
 
 import (
 	"fmt"
-	"github.com/tittuvarghese/core/crypto"
-	"github.com/tittuvarghese/core/jwt"
-	"github.com/tittuvarghese/customer-service/constants"
-	"github.com/tittuvarghese/customer-service/core/database"
-	"github.com/tittuvarghese/customer-service/models"
+	"github.com/tittuvarghese/ss-go-core/crypto"
+	"github.com/tittuvarghese/ss-go-core/jwt"
+	"github.com/tittuvarghese/ss-go-customer-service/constants"
+	"github.com/tittuvarghese/ss-go-customer-service/core/database"
+	"github.com/tittuvarghese/ss-go-customer-service/models"
 )
 
 func CreateUser(user models.User, storage *database.RelationalDatabase) error {

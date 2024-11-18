@@ -9,3 +9,11 @@ const JwtExpiryHours = 1000 // 41 Days
 const (
 	DatabaseUrlEnvName = "DATABASE_URL"
 )
+
+// Otel
+const (
+	OtelEnableEnv       = "OTEL_ENABLED"
+	OtelServiceNameEnv  = "OTEL_SERVICE_NAME"
+	OtelCollectorEnv    = "OTEL_COLLECTOR_URL"
+	OtelInsecureModeEnv = "OTEL_INSECURE_MODE"
+)
